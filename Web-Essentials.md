@@ -5,7 +5,7 @@
 ---
 
 ## 📋 Table of Contents
-1. [Internet vs Web](#internet-vs-web)
+1. [Internet vs Web](https://www.scaler.com/topics/difference-between-internet-and-www/)
 2. [Client-Server Architecture](#client-server)
 3. [Browser & Server Roles](#browser-server)
 4. [DNS, IP, Domain, URL](#dns-ip-domain-url)
