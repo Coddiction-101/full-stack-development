@@ -6,7 +6,7 @@
 
 ## 📋 Table of Contents
 1. [Internet vs Web](https://www.scaler.com/topics/difference-between-internet-and-www/)
-2. [Client-Server Architecture](#client-server)
+2. [Client-Server Architecture](https://www.coursera.org/articles/client-server-architecture)
 3. [Browser & Server Roles](#browser-server)
 4. [DNS, IP, Domain, URL](#dns-ip-domain-url)
 5. [HTTP/HTTPS](#http-https)
