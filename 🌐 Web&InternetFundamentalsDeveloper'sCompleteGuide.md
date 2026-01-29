@@ -1020,3 +1020,738 @@ GET /api/users/123/posts
 GET /api/posts/456/comments
 ```
 - ✅
+Simple, standard
+- ❌ Over-fetching (get more data than needed)
+- ❌ Under-fetching (need multiple requests)
+
+**GraphQL:**
+```graphql
+query {
+  user(id: 123) {
+    name
+    posts {
+      title
+      comments {
+        text
+      }
+    }
+  }
+}
+```
+- ✅ Get exactly what you need
+- ✅ Single request
+- ❌ More complex setup
+
+**WebSocket:**
+```
+Client ↔ Server (persistent connection)
+Real-time bidirectional communication
+```
+- ✅ Real-time updates (chat, notifications)
+- ✅ Low latency
+- ❌ More complex, stateful
+
+---
+
+### **7. CDN (Content Delivery Network)**
+
+**What It Is:**
+- Network of servers distributed globally
+- Caches static assets (images, CSS, JS)
+- Serves content from nearest server
+
+**How It Works:**
+```
+User in India → CDN Mumbai Server
+User in USA → CDN New York Server
+User in UK → CDN London Server
+```
+
+**Benefits:**
+- ✅ Faster load times (geographic proximity)
+- ✅ Reduced server load
+- ✅ DDoS protection
+- ✅ High availability
+
+**Popular CDNs:**
+- Cloudflare
+- AWS CloudFront
+- Akamai
+- Fastly
+
+---
+
+### **8. Caching Strategies**
+
+**Browser Cache:**
+```
+Cache-Control: max-age=3600 (cache for 1 hour)
+Cache-Control: no-cache (check with server first)
+Cache-Control: no-store (don't cache)
+```
+
+**Service Worker Cache:**
+```javascript
+// Cache-first strategy
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});
+```
+
+**Server-Side Caching:**
+- **In-memory:** Redis, Memcached
+- **Database:** Query result caching
+- **Full-page:** Varnish, Nginx
+
+---
+
+### **9. Load Balancing**
+
+**What It Is:**
+- Distribute traffic across multiple servers
+- Prevent overload on single server
+
+**Types:**
+
+**Round Robin:**
+```
+Request 1 → Server A
+Request 2 → Server B
+Request 3 → Server C
+Request 4 → Server A (repeat)
+```
+
+**Least Connections:**
+```
+Send request to server with fewest active connections
+```
+
+**IP Hash:**
+```
+Same IP → Always same server (session persistence)
+```
+
+**Tools:**
+- Nginx
+- HAProxy
+- AWS ELB
+- Google Cloud Load Balancer
+
+---
+
+### **10. Webhooks**
+
+**What They Are:**
+- Reverse API calls
+- Server sends data to client when event happens
+
+**Example:**
+```
+Normal API: Client asks "Any new orders?"
+Webhook: Server tells client "New order arrived!"
+```
+
+**Use Cases:**
+- Payment confirmations (Stripe)
+- GitHub events (push, PR)
+- Slack notifications
+
+---
+
+## ❌ Common Misunderstandings {#misunderstandings}
+
+### **1. "Website" vs "Web App" vs "Web Page"**
+
+**Web Page:**
+- Single HTML document
+- Example: About Us page
+
+**Website:**
+- Collection of related web pages
+- Example: company.com (home, about, contact)
+
+**Web App:**
+- Interactive application in browser
+- Example: Gmail, Google Docs, Netflix
+
+---
+
+### **2. Frontend vs Backend**
+
+❌ **Wrong:** "Frontend = design, Backend = coding"  
+✅ **Correct:** "Frontend = client-side code, Backend = server-side code"
+
+**Frontend:**
+- Runs in browser
+- HTML, CSS, JavaScript
+- React, Vue, Angular
+
+**Backend:**
+- Runs on server
+- Node.js, Python, Java, PHP
+- Databases, APIs, business logic
+
+---
+
+### **3. "JavaScript runs on the server"**
+
+❌ **Wrong:** JavaScript only runs in browser  
+✅ **Correct:** JavaScript runs everywhere!
+
+- Browser: DOM manipulation
+- Server: Node.js (Express, NestJS)
+- Mobile: React Native
+- Desktop: Electron
+- IoT: Johnny-Five
+
+---
+
+### **4. "HTTPS = 100% Secure"**
+
+❌ **Wrong:** HTTPS makes site unhackable  
+✅ **Correct:** HTTPS only encrypts data in transit
+
+**What HTTPS protects:**
+- ✅ Man-in-the-middle attacks
+- ✅ Eavesdropping
+
+**What HTTPS doesn't protect:**
+- ❌ SQL injection
+- ❌ XSS (Cross-Site Scripting)
+- ❌ Server vulnerabilities
+- ❌ Social engineering
+
+---
+
+### **5. "Cookies are bad"**
+
+❌ **Wrong:** All cookies are evil tracking  
+✅ **Correct:** Cookies have legitimate uses
+
+**Good uses:**
+- Authentication (stay logged in)
+- User preferences (language, theme)
+- Shopping cart
+
+**Bad uses:**
+- Third-party tracking without consent
+- Excessive data collection
+
+---
+
+### **6. "API = REST API"**
+
+❌ **Wrong:** API always means REST  
+✅ **Correct:** API is an interface, REST is one type
+
+**API Types:**
+- REST (most common)
+- GraphQL
+- SOAP
+- gRPC
+- WebSocket
+- Webhooks
+
+---
+
+### **7. "localhost = 127.0.0.1"**
+
+✅ **Mostly correct, but:**
+- `localhost` → DNS resolution → `127.0.0.1`
+- `127.0.0.1` → Direct IP (no DNS)
+- IPv6: `localhost` → `::1`
+
+---
+
+### **8. "404 = Server Error"**
+
+❌ **Wrong:** 404 is server breaking  
+✅ **Correct:** 404 = Resource not found (client error)
+
+**Remember:**
+- `4xx` → Client's fault
+- `5xx` → Server's fault
+
+---
+
+### **9. "Bigger images = Slower website"**
+
+❌ **Wrong assumption:** File size is the only factor  
+✅ **Correct:** Multiple factors affect performance
+
+**Factors:**
+- File size (KB/MB)
+- Image dimensions (pixels)
+- Format (JPEG, PNG, WebP)
+- Compression
+- Number of requests
+- Lazy loading
+
+---
+
+### **10. "Static Site = No Backend"**
+
+❌ **Wrong:** Static sites can't have dynamic features  
+✅ **Correct:** Static sites can use APIs
+
+**Jamstack Approach:**
+- Static HTML (SSG)
+- JavaScript for interactivity
+- APIs for dynamic data
+
+Example: Gatsby site + Contentful CMS + Stripe API
+
+---
+
+## 🎤 Interview Questions {#interview-questions}
+
+### **Basic Questions:**
+
+**Q1: What is the difference between HTTP and HTTPS?**
+```
+HTTP: Insecure, port 80, data plain text
+HTTPS: Secure (SSL/TLS), port 443, data encrypted
+
+Why HTTPS matters:
+- Data encryption
+- Authentication (verify server identity)
+- SEO ranking boost
+- Required for modern features (PWA, geolocation)
+```
+
+**Q2: What happens when you type a URL in the browser?**
+```
+1. DNS resolution (domain → IP)
+2. TCP connection (3-way handshake)
+3. TLS handshake (HTTPS only)
+4. HTTP request sent
+5. Server processes request
+6. HTTP response returned
+7. Browser renders HTML
+8. Additional requests for CSS, JS, images
+```
+
+**Q3: What is DNS?**
+```
+Domain Name System - "Internet's phone book"
+Translates human-readable domains (google.com) to IP addresses (142.250.185.46)
+
+DNS Flow:
+Browser → DNS Resolver → Root DNS → TLD DNS → Authoritative DNS → IP
+```
+
+**Q4: Difference between GET and POST?**
+```
+GET:
+- Retrieve data
+- Parameters in URL
+- Cacheable
+- Bookmarkable
+- Idempotent
+- Size limit (2048 chars)
+
+POST:
+- Submit data
+- Parameters in body
+- Not cacheable
+- Not bookmarkable
+- Not idempotent
+- No size limit
+```
+
+**Q5: What is CORS?**
+```
+Cross-Origin Resource Sharing
+Mechanism to allow cross-origin requests
+
+Browser blocks requests to different origins by default (Same-Origin Policy)
+CORS headers allow server to permit specific origins
+
+Server must send:
+Access-Control-Allow-Origin: https://example.com
+```
+
+---
+
+### **Intermediate Questions:**
+
+**Q6: Difference between cookies, localStorage, and sessionStorage?**
+```
+Cookies:
+- 4KB limit
+- Sent to server with every request
+- Can set expiration
+- HttpOnly flag for security
+
+localStorage:
+- 5-10MB limit
+- Client-side only
+- Persists forever (until cleared)
+- Accessible via JavaScript
+
+sessionStorage:
+- 5-10MB limit
+- Client-side only
+- Cleared when tab closes
+- Scoped to tab
+```
+
+**Q7: What is a REST API?**
+```
+REpresentational State Transfer
+Architectural style for web services
+
+Principles:
+- Stateless (no session on server)
+- Client-Server separation
+- Cacheable
+- Uniform interface (HTTP methods)
+
+Example:
+GET /api/users → Get all users
+GET /api/users/123 → Get user 123
+POST /api/users → Create user
+PUT /api/users/123 → Update user 123
+DELETE /api/users/123 → Delete user 123
+```
+
+**Q8: Explain HTTP status codes categories**
+```
+1xx: Informational (100 Continue)
+2xx: Success (200 OK, 201 Created)
+3xx: Redirection (301 Moved Permanently, 304 Not Modified)
+4xx: Client Error (400 Bad Request, 401 Unauthorized, 404 Not Found)
+5xx: Server Error (500 Internal Server Error, 503 Service Unavailable)
+
+Remember: 4xx = client's fault, 5xx = server's fault
+```
+
+**Q9: What is the difference between authentication and authorization?**
+```
+Authentication: Who are you?
+- Login with username/password
+- JWT tokens
+- OAuth
+
+Authorization: What can you do?
+- Role-based access control (RBAC)
+- Permissions
+- ACLs (Access Control Lists)
+
+Example:
+Authentication: Verify John is who he says he is
+Authorization: Check if John can delete this post
+```
+
+**Q10: What is caching and why is it important?**
+```
+Storing frequently accessed data for faster retrieval
+
+Types:
+- Browser cache (static assets)
+- CDN cache (geographic distribution)
+- Server cache (Redis, Memcached)
+- Database cache (query results)
+
+Benefits:
+- Faster page loads
+- Reduced server load
+- Lower bandwidth usage
+- Better user experience
+
+Headers:
+Cache-Control: max-age=3600 (cache 1 hour)
+ETag: "abc123" (validate cached version)
+```
+
+---
+
+### **Advanced Questions:**
+
+**Q11: Explain HTTPS handshake (TLS)**
+```
+1. Client Hello
+   - Supported cipher suites
+   - Random number
+
+2. Server Hello
+   - Chosen cipher suite
+   - Server certificate (public key)
+   - Random number
+
+3. Client verifies certificate
+   - Check CA signature
+   - Check expiration
+   - Check domain
+
+4. Client generates session key
+   - Encrypts with server's public key
+   - Sends to server
+
+5. Server decrypts session key
+   - Uses private key
+
+6. Secure communication established
+   - Both use session key for encryption
+```
+
+**Q12: What is HTTP/2 and how does it improve performance?**
+```
+Improvements over HTTP/1.1:
+
+1. Multiplexing
+   - Multiple requests over single connection
+   - No head-of-line blocking
+
+2. Header Compression
+   - HPACK compression (reduce overhead)
+
+3. Server Push
+   - Server sends resources before client requests
+
+4. Binary Protocol
+   - More efficient parsing
+   - Less error-prone
+
+5. Stream Prioritization
+   - Important resources first
+```
+
+**Q13: What are WebSockets and when would you use them?**
+```
+Persistent, bidirectional connection between client and server
+
+vs HTTP:
+- HTTP: Request-response (client initiates)
+- WebSocket: Full-duplex (both can initiate)
+
+Use cases:
+- Real-time chat
+- Live notifications
+- Collaborative editing
+- Gaming
+- Stock tickers
+- Live sports scores
+
+Protocol upgrade:
+GET /chat HTTP/1.1
+Upgrade: websocket
+Connection: Upgrade
+```
+
+**Q14: Explain Same-Origin Policy and how to work around it**
+```
+SOP: Scripts from one origin can't access data from another
+
+Origin = Protocol + Domain + Port
+
+Same origin:
+https://example.com/page1
+https://example.com/page2 ✅
+
+Different origin:
+https://example.com
+http://example.com ❌ (protocol)
+https://api.example.com ❌ (subdomain)
+https://example.com:8080 ❌ (port)
+
+Workarounds:
+1. CORS (server allows specific origins)
+2. JSONP (legacy, avoid)
+3. Proxy server (route through same origin)
+4. PostMessage API (window communication)
+```
+
+**Q15: What is CDN and how does it work?**
+```
+Content Delivery Network
+Geographic distribution of servers caching static content
+
+How it works:
+1. User requests https://example.com/logo.png
+2. DNS routes to nearest CDN server
+3. CDN checks cache
+   - If cached → Return immediately
+   - If not → Fetch from origin, cache, return
+4. Subsequent requests served from cache
+
+Benefits:
+- Reduced latency (geographic proximity)
+- Lower origin server load
+- DDoS protection
+- High availability
+
+Edge cases:
+- Cache invalidation (purge when updated)
+- Cache-Control headers (set TTL)
+```
+
+---
+
+## 📄 One-Page Cheat Sheet {#cheat-sheet}
+
+```markdown
+# Web Fundamentals - Quick Reference
+
+## Internet vs Web
+Internet: Global network infrastructure (cables, routers)
+Web: Service on top of Internet (HTTP, websites)
+
+## Client-Server
+Client: Requests services (browser, app)
+Server: Provides services (web server, database)
+
+## DNS Resolution
+Domain → IP Address
+Example: google.com → 142.250.185.46
+Flow: Browser → Resolver → Root → TLD → Authoritative → IP
+
+## URL Structure
+https://user:pass@example.com:443/path?key=value#hash
+│      │          │            │   │    │          │
+Protocol Creds   Domain       Port Path Query    Fragment
+
+## HTTP Methods
+GET: Retrieve | POST: Create | PUT: Update | PATCH: Partial | DELETE: Remove
+
+## Status Codes
+2xx: Success (200 OK, 201 Created)
+3xx: Redirect (301 Permanent, 302 Temporary, 304 Not Modified)
+4xx: Client Error (400 Bad Request, 401 Unauthorized, 404 Not Found)
+5xx: Server Error (500 Internal, 502 Bad Gateway, 503 Unavailable)
+
+## Request Flow
+1. DNS Lookup (domain → IP)
+2. TCP Handshake (SYN, SYN-ACK, ACK)
+3. TLS Handshake (HTTPS only)
+4. HTTP Request
+5. Server Processing
+6. HTTP Response
+7. Browser Rendering (DOM → CSSOM → Render Tree → Paint)
+
+## Security
+HTTPS: Encrypted (SSL/TLS), Port 443
+CORS: Cross-Origin Resource Sharing
+Same-Origin: Protocol + Domain + Port must match
+XSS: Cross-Site Scripting (sanitize input)
+CSRF: Cross-Site Request Forgery (tokens)
+
+## Storage
+Cookies: 4KB, sent to server, has expiration
+LocalStorage: 5-10MB, client only, persists forever
+SessionStorage: 5-10MB, client only, tab-scoped
+
+## Caching
+Browser: Cache-Control, ETag, Expires
+CDN: Geographic distribution, edge servers
+Server: Redis, Memcached (in-memory)
+
+## Authentication
+Session: Server stores state, sends session ID
+Token (JWT): Stateless, client stores token
+Header: Authorization: Bearer <token>
+
+## API Types
+REST: Resource-based, HTTP methods
+GraphQL: Query language, single endpoint
+WebSocket: Real-time, bidirectional
+
+## Performance
+CSR: Client-Side Rendering (React SPA)
+SSR: Server-Side Rendering (Next.js)
+SSG: Static Site Generation (Gatsby)
+CDN: Content Delivery Network
+Lazy Loading: Load on demand
+
+## Key Ports
+80: HTTP
+443: HTTPS
+3000: Node.js dev
+8080: Alternative HTTP
+22: SSH
+21: FTP
+
+## HTTP/2 Improvements
+- Multiplexing (multiple requests, one connection)
+- Header compression (HPACK)
+- Server push
+- Binary protocol
+
+## Common Headers
+Request: Authorization, Cookie, Content-Type, User-Agent
+Response: Set-Cookie, Content-Type, Cache-Control, Location
+Security: Strict-Transport-Security, X-Content-Type-Options
+
+## Interview Key Points
+- "What happens when you type URL?" → Full request flow
+- HTTP vs HTTPS → Encryption, certificate, SEO
+- GET vs POST → Idempotent, cacheable, body
+- 4xx vs 5xx → Client fault vs Server fault
+- CORS → Same-Origin Policy workaround
+- CDN → Geographic distribution, caching
+```
+
+---
+
+## 🎓 Additional Resources
+
+### **Must-Read Documentation:**
+- [MDN Web Docs](https://developer.mozilla.org/) - Web APIs, HTML, CSS, JS
+- [HTTP Specification](https://httpwg.org/specs/) - HTTP standards
+- [RFC 7540](https://tools.ietf.org/html/rfc7540) - HTTP/2
+- [OWASP](https://owasp.org/) - Web security
+
+### **Interactive Learning:**
+- [HTTP Cats](https://http.cat/) - HTTP status codes with cats
+- [DNS Explained](https://howdns.works/) - Visual DNS guide
+- [How HTTPS Works](https://howhttps.works/) - Comic explanation
+
+### **Tools for Testing:**
+- [Postman](https://www.postman.com/) - API testing
+- [cURL](https://curl.se/) - Command-line HTTP tool
+- [Chrome DevTools](https://developer.chrome.com/docs/devtools/) - Network tab
+- [Pingdom](https://tools.pingdom.com/) - Website speed test
+- [SSL Labs](https://www.ssllabs.com/ssltest/) - SSL/TLS checker
+
+### **Books:**
+- "HTTP: The Definitive Guide" - David Gourley
+- "Computer Networking: A Top-Down Approach" - Kurose & Ross
+
+---
+
+## ✅ Checklist: Am I Ready?
+
+Before moving to next topics, ensure you can:
+
+- [ ] Explain Internet vs Web difference
+- [ ] Describe client-server architecture
+- [ ] Explain full request flow (URL → Rendered page)
+- [ ] Differentiate HTTP methods (GET, POST, PUT, DELETE)
+- [ ] Recognize HTTP status codes (2xx, 3xx, 4xx, 5xx)
+- [ ] Understand DNS resolution process
+- [ ] Explain HTTPS and SSL/TLS handshake
+- [ ] Know difference between cookies, localStorage, sessionStorage
+- [ ] Understand CORS and Same-Origin Policy
+- [ ] Explain caching mechanisms
+- [ ] Differentiate authentication vs authorization
+- [ ] Know when to use REST, GraphQL, WebSocket
+- [ ] Understand CSR, SSR, SSG differences
+
+---
+
+**Save this guide to your GitHub for future reference!** 🚀
+
+**Next Learning Path:**
+1. ✅ Web Fundamentals (This guide)
+2. → Frontend (HTML, CSS, JavaScript)
+3. → Backend (Node.js, Databases, APIs)
+4. → DevOps (Deployment, CI/CD)
+5. → Advanced (Security, Performance, Architecture)
+
+---
+
+*Last Updated: 2025*  
+*Created for developers learning Full Stack Development*
