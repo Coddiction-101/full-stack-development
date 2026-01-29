@@ -11,7 +11,7 @@
 4.  [DNS](https://www.cloudflare.com/learning/dns/what-is-dns/) | [IP](https://www.cloudflare.com/learning/network-layer/internet-protocol/) | [URL](https://www.hostinger.com/in/tutorials/what-is-a-url) | 
 5. [HTTP/HTTPS](https://aws.amazon.com/compare/the-difference-between-https-and-http/)
 6. [Request Flow: Browser to Server](https://www.parthgoswami.com/http_request_response_flow/)
-7. [Essential Web Concepts](#essential-concepts)
+7. Essential Web Concepts [First](https://medium.com/@mirtiza/35-important-concepts-and-tools-for-web-development-with-examples-e8d198e0dc4b) -- [Second](https://www.testmuai.com/blog/web-development-skills/)
 8. [Common Misunderstandings](#misunderstandings)
 9. [Interview Questions](#interview-questions)
 10. [One-Page Cheat Sheet](#cheat-sheet)
