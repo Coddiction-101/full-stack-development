@@ -10,7 +10,7 @@
 3. [Browser & Server Roles](https://www.zenarmor.com/docs/network-basics/what-is-web-server)
 4.  [DNS](https://www.cloudflare.com/learning/dns/what-is-dns/) | [IP](https://www.cloudflare.com/learning/network-layer/internet-protocol/) | [URL](https://www.hostinger.com/in/tutorials/what-is-a-url) | 
 5. [HTTP/HTTPS](https://aws.amazon.com/compare/the-difference-between-https-and-http/)
-6. [Request Flow: Browser to Server](#request-flow)
+6. [Request Flow: Browser to Server](https://www.parthgoswami.com/http_request_response_flow/)
 7. [Essential Web Concepts](#essential-concepts)
 8. [Common Misunderstandings](#misunderstandings)
 9. [Interview Questions](#interview-questions)
