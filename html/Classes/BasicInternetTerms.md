@@ -232,9 +232,21 @@ Patience and practice are key. These are early steps; incremental progress bring
 ---
 
 ## Conclusion
-
-Today’s digital landscape revolves around an interconnected ecosystem of networks and devices, powered by the internet and rendered visible through browsers and web applications. By demystifying terms like network, internet, IP address, browser, browser engine, and the client-server model, you’ve taken a significant stride in unraveling the intricacies of web technology.
-
-Remember, learning is an ongoing process—each concept will reveal more layers and practical applications as you persist. Use everyday examples to reinforce your knowledge; engage actively with practice and observation. With confidence in these basics, future explorations in web development will become more intuitive and rewarding.
+Network Structure
+Network
+Core system of interconnected devices
+1
+Devices
+Individual components within the network
+2
+Communication
+3
+Exchange of information between devices
+Resource Sharing
+4
+Access to shared files and printers
+Connectivity
+5
+Technology enabling network connections<img width="1900" height="1234" alt="image" src="https://github.com/user-attachments/assets/a80ac36e-c75f-402c-8b95-d1629b7de4a7" />
 
 Stay motivated, keep learning, and let curiosity guide your journey through the web’s vast universe.
