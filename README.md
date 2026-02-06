@@ -21,7 +21,7 @@ using **Love Babbar’s YouTube Playlist**.
 - Projects
 
 ## ✅ Progress Tracker
-- [x] HTML – In Progress
+- [x] HTML & Fundamentals – In Progress
 - [ ] CSS
 - [ ] JavaScript
 - [ ] Backend
