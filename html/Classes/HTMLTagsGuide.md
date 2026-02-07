@@ -2,7 +2,8 @@
 
 HTML **tags** are special keywords enclosed in angle brackets (`< >`) that provide **structure**, **meaning (semantics)**, or **formatting** to content on a web page.    They allow you to define where content like text, images, videos, or audio appears, what it represents (e.g., a heading or paragraph), and how it should look, enabling features like text-to-speech or search engine optimization.   
 
-Think of tags as instructions for the browser: "<h1> marks a main title, telling the browser 'this is a top-level heading' rather than just bold text."   This semantic meaning matters because it helps screen readers and SEO understand content hierarchy, unlike plain formatting.  
+> Think of tags as instructions for the browser: "<h3> marks a main title, telling the browser 'this is a top-level heading' rather than just bold text."
+> This semantic meaning matters because it helps screen readers and SEO understand content hierarchy, unlike plain formatting.  
 
 ## Tags vs Elements: Key Distinction
 
